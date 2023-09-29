@@ -55,7 +55,7 @@ class MyWebServer(socketserver.BaseRequestHandler):
             if paths != "/":
                 if paths[-1] != "/":
                     self.request.sendall("HTTP/1.1 301 Moved Permanently\r\n".encode())
-                    self.request.sendall(("Content-Type: Location: http://127.0.0.1:8080" + paths + "/" + "\n").encode())
+                    self.request.sendall(("Content-Type: Location:" + paths + "/" + "\n").encode())
                     return
 
             paths = paths + "/"
@@ -84,12 +84,12 @@ class MyWebServer(socketserver.BaseRequestHandler):
 
             # mimetypes for html and css
             if paths.endswith("html"):
-                self.request.sendall("Content-type: text/html; charset=utf-8\r\n".encode())
+                self.request.sendall("Content-type: text/html\r\n".encode())
             else:
-                self.request.sendall("Content-type: text/css; charset=utf-8\r\n".encode())
+                self.request.sendall("Content-type: text/css\r\n".encode())
 
-            data = file.read().encode()
-            self.request.sendall(("Content-Length: " + str(len(data)) + "\r\n\r\n").encode() + data)
+            # data = file.read().encode()
+            # self.request.sendall(("Content-Length: " + str(len(data)) + "\r\n\r\n").encode() + data)
 
 
 if __name__ == "__main__":
