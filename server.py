@@ -88,9 +88,6 @@ class MyWebServer(socketserver.BaseRequestHandler):
             else:
                 self.request.sendall("Content-type: text/css\r\n".encode())
 
-            # data = file.read().encode()
-            # self.request.sendall(("Content-Length: " + str(len(data)) + "\r\n\r\n").encode() + data)
-
 
 if __name__ == "__main__":
     HOST, PORT = "localhost", 8080
