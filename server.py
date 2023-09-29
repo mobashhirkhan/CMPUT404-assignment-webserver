@@ -2,6 +2,7 @@
 import os.path
 import socketserver
 
+
 # Copyright 2013 Abram Hindle, Eddie Antonio Santos
 # 
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,10 +30,10 @@ import socketserver
 
 
 class MyWebServer(socketserver.BaseRequestHandler):
-    
+
     def handle(self):
-        self.data = self.request.recv(1024).strip()
-        print ("Got a request of: %s\n" % self.data)
+        self.data = self.request.recv(1024).strip().decode("utf-8")
+        print("Got a request of: %s\n" % self.data)
         # self.request.sendall(bytearray("OK", 'utf-8'))
 
         request = self.data.splitlines()  # split the request line
